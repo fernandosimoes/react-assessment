@@ -55,33 +55,35 @@ const Home = () => {
     <Layout>
       <Filter />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {filteredData.map((item, index) => (
-          <Link
-            to={`/users/${item.login.uuid}`}
-            key={index}
-            className="border p-4 rounded shadow-md flex items-center gap-4 cursor-pointer"
-          >
-            <img
-              className="rounded-full"
-              src={item.picture.large}
-              alt={`Profile picture of ${item.name.first} ${item.name.last}`}
-            />
-            <div className="overflow-hiden">
-              <h2 className="text-xl font-bold">
-                {item.name.first} {item.name.last}
-              </h2>
-              <span className="truncate w-[100px]">{item.email}</span>
-              <div>
-                <Badge variant="rounded" size="xs">
-                  {item.gender}
-                </Badge>
-                <Badge variant="rounded" size="xs">
-                  {item.dob.age}
-                </Badge>
-              </div>
-            </div>
-          </Link>
-        ))}
+        {filteredData.length > 0
+          ? filteredData.map((item, index) => (
+              <Link
+                to={`/users/${item.login.uuid}`}
+                key={index}
+                className="border p-4 rounded shadow-md flex items-center gap-4 cursor-pointer"
+              >
+                <img
+                  className="rounded-full"
+                  src={item.picture.large}
+                  alt={`Profile picture of ${item.name.first} ${item.name.last}`}
+                />
+                <div className="overflow-hiden">
+                  <h2 className="text-xl font-bold">
+                    {item.name.first} {item.name.last}
+                  </h2>
+                  <span className="truncate w-[100px]">{item.email}</span>
+                  <div>
+                    <Badge variant="rounded" size="xs">
+                      {item.gender}
+                    </Badge>
+                    <Badge variant="rounded" size="xs">
+                      {item.dob.age}
+                    </Badge>
+                  </div>
+                </div>
+              </Link>
+            ))
+          : "No results found"}
       </div>
     </Layout>
   );

@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a React project developed with Vite, TypeScript, Zustand, and React Router. It features a responsive user list fetched from the `https://randomuser.me/api`. The project includes an efficient filtering system using Zustand and unit tests with Jest and React Testing Library.
+This is a React project developed with Vite, TypeScript, Zustand, and React Router. It features a responsive user list fetched from [randomuser.me API](https://randomuser.me/api). The project includes an efficient filtering system using Zustand and unit tests with Jest and React Testing Library.
 
 ## Technologies Used
 
@@ -24,14 +24,16 @@ This is a React project developed with Vite, TypeScript, Zustand, and React Rout
   - Filter by **age range**.
 - Global state management with Zustand.
 - Unit tests for core components.
+- Performance optimization using `useMemo` and `useEffect`.
+- Error handling with proper fallback UI.
 
 ## Installation and Usage
 
 ### 1️⃣ Clone the repository:
 
 ```sh
- git clone https://github.com/your-username/react-assessment.git
- cd react-assessment
+git clone https://github.com/your-username/react-assessment.git
+cd react-assessment
 ```
 
 ### 2️⃣ Install dependencies:
@@ -59,10 +61,10 @@ npm run test
 ```
 react-assessment/
 │── src/
-│   ├── services/      # APi configuration file and specific services http requests
-│   ├── components/    # Reusable components, test files is together with the property file
-│   ├── pages/         # Main pages, test files is together with the property file
-│   ├── store/         # Global state with Zustand, test files is together with the property file
+│   ├── services/      # API configuration and service functions
+│   ├── components/    # Reusable components, with test files included
+│   ├── pages/         # Main pages, with test files included
+│   ├── store/         # Global state with Zustand, with test files included
 │   ├── App.tsx        # Main component and router handling
 │   ├── main.tsx       # React entry point
 │── public/
@@ -72,8 +74,18 @@ react-assessment/
 │── package.json       # Dependencies and scripts
 ```
 
-## Future Improvements
+## Assumptions and Decisions
 
-- Implement pagination.
-- Improve UI design using Tailwind CSS.
-- Expand test coverage for edge cases.
+- **API Choice:** The project uses the [randomuser.me API](https://randomuser.me/api) to generate a dynamic user list instead of a static dataset.
+- **State Management:** I believe that Zustand was recommended for this project because its lightweight and efficient state management capabilities, enabling easy filtering without unnecessary re-renders.
+- **Filtering Approach:** Filtering is done on the frontend using Zustand and `useMemo`, ensuring performance optimization.
+- **Component Composition:** Components are modular, with separation of concerns to enhance reusability and maintainability.
+- **Testing Strategy:** Jest and React Testing Library are used to cover rendering and filtering logic.
+
+## Implementation Details
+
+- **Data Fetching:** `getUsers` function fetches data from the API using Axios and stores it in local state.
+- **Filtering Logic:** The `useMemo` hook is used to filter the list based on user selections (gender, name, and age range), preventing unnecessary computations.
+- **State Management:** Zustand is used to manage filter state globally, reducing prop drilling.
+- **Error Handling:** The app includes an error boundary to catch and display errors gracefully.
+- **Performance Considerations:** Skeleton loaders are used to improve UX during data fetching, and `useMemo` helps prevent unnecessary re-renders.

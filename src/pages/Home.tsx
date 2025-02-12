@@ -9,6 +9,7 @@ import Layout from "../components/Layout";
 import { Link } from "react-router-dom";
 import CardSkeleton from "../components/CardSkeleton";
 import Filter from "../components/Filter";
+import BuggyComponent from "../components/BuggyComponent";
 
 const Home = () => {
   const [data, setData] = useState<IUser[]>([]);
@@ -85,6 +86,7 @@ const Home = () => {
             ))
           : "No results found"}
       </div>
+      <BuggyComponent />
     </Layout>
   );
 };

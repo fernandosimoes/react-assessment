@@ -15,6 +15,7 @@ const Badge = ({ size = "xs", variant = "default", children }: IBadgeProps) => {
 
   return (
     <span
+      role="status"
       className={`${baseClasses} ${bgClasses} ${borderClasses} ${roundedClasses}`}
     >
       {children}

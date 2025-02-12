@@ -6,7 +6,7 @@ import { getUsers } from "../services/users";
 import { filterState } from "../store/useStore";
 import Badge from "../components/Badge";
 import Layout from "../components/Layout";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CardSkeleton from "../components/CardSkeleton";
 import Filter from "../components/Filter";
 
@@ -15,7 +15,6 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { gender, name, ageRange } = filterState();
 
-  const navigate = useNavigate();
   useEffect(() => {
     setIsLoading(true);
     const listUsers = async () => {
@@ -57,21 +56,21 @@ const Home = () => {
       <Filter />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {filteredData.map((item, index) => (
-          <div
-            onClick={() => navigate(`users/${item.login.uuid}`)}
+          <Link
+            to={`/users/${item.login.uuid}`}
             key={index}
             className="border p-4 rounded shadow-md flex items-center gap-4 cursor-pointer"
           >
             <img
               className="rounded-full"
               src={item.picture.large}
-              alt={item.name.first}
+              alt={`Profile picture of ${item.name.first} ${item.name.last}`}
             />
             <div className="overflow-hiden">
               <h2 className="text-xl font-bold">
                 {item.name.first} {item.name.last}
               </h2>
-              <a className="truncate w-[100px]">{item.email}</a>
+              <span className="truncate w-[100px]">{item.email}</span>
               <div>
                 <Badge variant="rounded" size="xs">
                   {item.gender}
@@ -81,7 +80,7 @@ const Home = () => {
                 </Badge>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </Layout>

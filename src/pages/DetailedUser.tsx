@@ -15,7 +15,6 @@ const DetailedUser = () => {
   useEffect(() => {
     setIsLoading(true);
     const detailerdUser = async () => {
-      console.log(id);
       const user = await getUserById(id);
       setUser(user);
       setIsLoading(false);
@@ -33,9 +32,18 @@ const DetailedUser = () => {
   return (
     <Layout>
       <div className="w-full">
-        <button onClick={() => navigate("/")}>back to list</button>
+        <button
+          onClick={() => navigate("/")}
+          className="focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
+        >
+          Back to List
+        </button>
         <div className="flex flex-col max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm ">
-          <img className="object-cover " src={user?.picture?.large} alt="" />
+          <img
+            className="object-cover "
+            src={user?.picture?.large}
+            alt={`Profile picture of ${user?.name?.first} ${user?.name?.last}`}
+          />
           <div className="flex flex-col justify-between p-4 leading-normal">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
               {user?.name?.first} {user?.name?.last}

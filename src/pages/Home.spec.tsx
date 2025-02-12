@@ -3,8 +3,8 @@ import "@testing-library/jest-dom";
 import { render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 
-import Home from "../pages/Home";
 import { getUsers } from "../services/users";
+import Home from "./Home";
 
 jest.mock("../services/users", () => ({
   getUsers: jest.fn(),

@@ -17,9 +17,12 @@ module.exports = {
   collectCoverageFrom: [
     "src/**/*.tsx",
     "src/**/*.ts",
-    "!src/**/*.spec.tsx",
+    "!src/main.tsx",
+    "!src/vite-env.d.ts",
+    "!src/**/_app.tsx",
     "!src/**/_app.tsx",
     "!src/**/_document.tsx",
+    "!src/services/*",
   ],
   coverageReporters: ["lcov", "json", "html", "text-summary"],
 
